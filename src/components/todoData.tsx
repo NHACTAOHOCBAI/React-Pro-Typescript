@@ -5,14 +5,7 @@ interface IProps {
         isComplete: boolean
     }[]
 }
-type TProps = {
-    todos: {
-        id: number
-        title: string,
-        isComplete: boolean
-    }[]
-}
-const TodoData = (props: TProps) => {
+const TodoData = (props: IProps) => {
     const { todos } = props;
     return (
         <>
