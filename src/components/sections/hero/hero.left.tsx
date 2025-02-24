@@ -1,13 +1,15 @@
 import Typewriter from "typewriter-effect";
-import SocialMedia from "../social.media";
+import SocialMedia from "components/sections/social.media";
 import { useTranslation } from "react-i18next";
 import './hero.scss';
-import ResizeButton from "../resize.button";
-import { APP_DATA } from '../../../helpers/data';
+import ResizeButton from "components/sections/resize.button";
+import { APP_DATA } from 'helpers/data';
 import { MdFileDownload } from "react-icons/md";
 import { AiFillFire } from "react-icons/ai";
-
-const HeroLeft = () => {
+interface IProps {
+    scrollToExperienceSection: () => void
+}
+const HeroLeft = (props: IProps) => {
 
     const { t } = useTranslation();
 
@@ -49,6 +51,7 @@ const HeroLeft = () => {
             </div>
             <div className="d-md-flex d-none gap-4">
                 <ResizeButton
+                    onClick={props.scrollToExperienceSection}
                     btnText={t("heroSection.exp")}
                     btnIcons={<AiFillFire style={{ color: "orange" }} />}
                     btnStyle={{

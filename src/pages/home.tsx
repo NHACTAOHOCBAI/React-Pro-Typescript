@@ -1,18 +1,22 @@
 import { Col, Container, Row } from "react-bootstrap";
-import HeroLeft from "../components/sections/hero/hero.left";
-import HeroRight from "../components/sections/hero/hero.right";
+import HeroLeft from "components/sections/hero/hero.left";
+import HeroRight from "components/sections/hero/hero.right";
 import { MdFileDownload } from "react-icons/md";
-import bg from '../assets/section.svg';
-import Introduction from "../components/sections/introduction";
+import bg from 'assets/section.svg';
+import Introduction from "components/sections/introduction";
 import { useTranslation } from "react-i18next";
-import Divider from "../components/sections/divider";
-import Experience from "../components/sections/experience";
-import Skill from "../components/sections/skill";
-import ResizeButton from "../components/sections/resize.button";
+import Divider from "@/components/sections/divider";
+import Experience from "components/sections/experience";
+import Skill from "components/sections/skill";
+import ResizeButton from "components/sections/resize.button";
+import { useRef } from "react";
 
 const HomePage = () => {
     const { t } = useTranslation();
-
+    const expRef = useRef<HTMLElement>();
+    const scrollToExperienceSection = () => {
+        expRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
     return (
         <div className="homepage-screen">
             <div style={{
@@ -31,7 +35,9 @@ const HomePage = () => {
                 >
                     <Row>
                         <Col className="d-none d-md-block" md={6}>
-                            <HeroLeft />
+                            <HeroLeft
+                                scrollToExperienceSection={scrollToExperienceSection}
+                            />
                         </Col>
                         <Col md={6}>
                             <HeroRight />
@@ -51,7 +57,7 @@ const HomePage = () => {
                 </Container>
             </section>
             <Divider />
-            <section>
+            <section ref={expRef}>
                 <Container>
                     <Experience />
                 </Container>
